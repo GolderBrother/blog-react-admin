@@ -16,7 +16,7 @@ const FooterView = () => (
         {
           key: 'github',
           title: <Icon type="github" />,
-          href: 'https://github.com/biaochenxuying/blog-react-admin',
+          href: 'https://github.com/GolderBrother/blog-react-admin',
           blankTarget: true,
         },
         {

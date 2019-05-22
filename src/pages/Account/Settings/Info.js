@@ -108,7 +108,8 @@ class Info extends Component {
           </div>
           <div className={styles.right}>
             <div className={styles.title}>{this.getRightTitle()}</div>
-            {children}
+            children
+            {/* {children} */}
           </div>
         </div>
       </GridContent>

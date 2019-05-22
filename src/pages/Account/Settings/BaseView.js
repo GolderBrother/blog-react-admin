@@ -26,7 +26,6 @@ const AvatarView = ({ avatar }) => (
   </Fragment>
 );
 
-
 @connect(({ user }) => ({
   currentUser: user.currentUser,
 }))

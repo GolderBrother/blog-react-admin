@@ -7,6 +7,7 @@ import groupBy from 'lodash/groupBy';
 import NoticeIcon from '../NoticeIcon';
 import SelectLang from '../SelectLang';
 import styles from './index.less';
+import UserAvatar from '../UserAvatar';
 const MenuItemGroup = Menu.ItemGroup;
 
 export default class GlobalHeaderRight extends PureComponent {
@@ -156,7 +157,8 @@ export default class GlobalHeaderRight extends PureComponent {
         </NoticeIcon>
         <SelectLang className={styles.action} />
         {/* TODO:可以单独抽离成组件 */}
-        {currentUser.username ? (
+        <UserAvatar currentUser={currentUser}/>
+        {/* {currentUser.username ? (
           <Dropdown overlay={menu}>
             <span className={`${styles.action} ${styles.account}`}>
               <Avatar
@@ -170,7 +172,7 @@ export default class GlobalHeaderRight extends PureComponent {
           </Dropdown>
         ) : (
           <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
-        )}
+        )} */}
       </div>
     );
   }

@@ -32,7 +32,9 @@ export default {
       call,
       put
     }) {
+      // call 表示调用异步函数
       const response = yield call(queryCurrent);
+      // put 表示 dispatch action
       yield put({
         type: 'saveCurrentUser',
         payload: response,

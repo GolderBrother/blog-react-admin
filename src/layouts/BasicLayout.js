@@ -297,7 +297,7 @@ class BasicLayout extends React.PureComponent {
   };
 
   // 查看个人信息
-  handleView(item){
+  handleView(item) {
     console.log('handleView: %o', item);
     // TODO: 弹出模态框，查看个人信息
   }
@@ -324,7 +324,7 @@ class BasicLayout extends React.PureComponent {
       key,
       value,
       loading: true,
-      avatarImg
+      avatarImg,
     }));
 
     // const loadMore =
@@ -370,12 +370,12 @@ class BasicLayout extends React.PureComponent {
           <Content style={this.getContentStyle()}>
             <Authorized authority={routerConfig.authority} noMatch={<Exception403 />}>
               {children}
-              {/* TODO: 这个应该放到对应的页面中 Account/Settings/Info */}
               <div className="user-info">
-                <UserInfo 
-                  list = {list}
-                  handleView = {this.handleView}
-                  handleEdit = {this.handleEdit}
+                <UserInfo
+                  pathname={pathname}
+                  list={list}
+                  handleView={this.handleView}
+                  handleEdit={this.handleEdit}
                 />
               </div>
             </Authorized>

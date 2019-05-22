@@ -3,9 +3,9 @@ import './BasicLayout.scss';
 import { List, Avatar } from 'antd';
 export default class UserInfo extends Component {
   render() {
-    const { list, handleView, handleEdit } = this.props;
+    const { list, handleView, handleEdit, pathname } = this.props;
     return (
-      <div>
+      pathname.includes('account/settings') && <div>
         <List
           className="user-info-loadmore-list"
           itemLayout="horizontal"
@@ -31,7 +31,7 @@ export default class UserInfo extends Component {
             >
               <List.Item.Meta
                 avatar={<Avatar src={item.avatarImg} />}
-                title={<a href="https://ant.design">{item.key}</a>}
+                title={<a href="javascript:void(0);">{item.key}</a>}
                 description={JSON.stringify(item.value)}
               />
             </List.Item>

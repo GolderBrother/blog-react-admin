@@ -519,7 +519,7 @@ class TableList extends PureComponent {
       }).then(res => {
         // console.log('res :', res)
         const tagsArr = [];
-        if (res.data.tags.length) {
+        if (res.data.tags && res.data.tags.length) {
           for (let i = 0; i < res.data.tags.length; i++) {
             const e = res.data.tags[i];
             tagsArr.push(e._id);
@@ -527,7 +527,7 @@ class TableList extends PureComponent {
         }
         const tags = tagsArr.length ? tagsArr.join() : '';
         const categoryArr = [];
-        if (res.data.category.length) {
+        if (res.data.category && res.data.category.length) {
           for (let i = 0; i < res.data.category.length; i++) {
             const e = res.data.category[i];
             categoryArr.push(e._id);
