@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Spin, Dropdown, Avatar } from 'antd';
 import styles from './index.less';
 export default class UserAvatarInfo extends Component {
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, menu } = this.props;
     return currentUser.username ? (
-        <div class="user-avatar">
+        <div className={'user-avatar ' + styles['user-avatar']}>
             <Dropdown overlay={menu}>
                 <span className={`${styles.action} ${styles.account}`}>
                 <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />

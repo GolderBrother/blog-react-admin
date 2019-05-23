@@ -1,48 +1,51 @@
 @import '~antd/lib/style/themes/default.less';
+// @import '../../../node_modules/antd/dist/antd.less';
 // @import '~antd/dist/antd.less';
+@pro-header-hover-bg: rgba(0, 0, 0, 0.025);
+@screen-md: 1366px;
+@primary-color: rgb(24, 144, 255);
+@text-color: #666;
 
 .user-avatar {
-  .right {
-    float: right;
+  float: right;
+  height: 100%;
+  overflow: hidden;
+
+  .action {
+    cursor: pointer;
+    padding: 0 12px;
+    display: inline-block;
+    transition: all 0.3s;
     height: 100%;
-    overflow: hidden;
 
-    .action {
-      cursor: pointer;
-      padding: 0 12px;
-      display: inline-block;
-      transition: all 0.3s;
-      height: 100%;
-
-      >i {
-        vertical-align: middle;
-        color: @text-color;
-      }
-
-      &:hover {
-        background: @pro-header-hover-bg;
-      }
-
-      :global(&.ant-popover-open) {
-        background: @pro-header-hover-bg;
-      }
+    >i {
+      vertical-align: middle;
+      color: @text-color;
     }
 
-    .search {
-      padding: 0 12px;
-
-      &:hover {
-        background: transparent;
-      }
+    &:hover {
+      background: @pro-header-hover-bg;
     }
 
-    .account {
-      .avatar {
-        margin: 20px 8px 20px 0;
-        color: @primary-color;
-        background: rgba(255, 255, 255, 0.85);
-        vertical-align: middle;
-      }
+    :global(&.ant-popover-open) {
+      background: @pro-header-hover-bg;
+    }
+  }
+
+  .search {
+    padding: 0 12px;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  .account {
+    .avatar {
+      margin: 20px 8px 20px 0px;
+      color: @primary-color;
+      background: rgb(128, 128, 128);
+      vertical-align: middle;
     }
   }
 
@@ -70,6 +73,8 @@
 
 @media only screen and (max-width: @screen-md) {
   .user-avatar {
+    float: right;
+
     .header {
       :global(.ant-divider-vertical) {
         vertical-align: unset;
@@ -91,6 +96,7 @@
           }
         }
       }
+      
     }
   }
 }

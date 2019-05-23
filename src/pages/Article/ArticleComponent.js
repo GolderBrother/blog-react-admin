@@ -7,6 +7,8 @@ import { connect } from 'dva';
   tag,
   category,
 }))
+
+// TODO: 编辑获取文章详细信息信息不一致，需要解决 2019.5.23
 class ArticleComponent extends React.Component {
   constructor(props) {
     super(props);

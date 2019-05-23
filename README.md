@@ -170,17 +170,10 @@ https://pro.ant.design/docs/authority-management-cn
 
 鉴于问问题的人有点多，笔者时间有限，处理不过来，大家可以加入 QQ 群：**186045338**，加群暗号：**全栈修炼** ，一起相互交流学习。
 
-欢迎关注以下公众号，学到不一样的 **武功秘籍** ！
-
-关注公众号并回复 **福利** 可领取免费学习资料，福利详情请猛戳： [免费资源获取--Python、Java、Linux、Go、node、vue、react、javaScript](https://biaochenxuying.cn/articleDetail?article_id=5bf4ba3c245730373274df61)
-
-![BiaoChenXuYing.png](https://upload-images.jianshu.io/upload_images/12890819-4d7d488cb8fbb76f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
 
 #### TODO：
 1.Dashboard需要填充文章、热门、项目、留言等数据统计
 2.需要增加显示当前登录用户，以及登出功能(已完成-2019.5.11)
 3.个人设置页面需要完善
-4.服务端技术架构转变: express -> egg
+4.服务端技术架构转变: express -> egg(已完成-2019.5.22)
 

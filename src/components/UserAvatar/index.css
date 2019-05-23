@@ -1,1 +1,70 @@
-null
+.user-avatar {
+  float: right;
+  height: 100%;
+  overflow: hidden;
+}
+.user-avatar .action {
+  cursor: pointer;
+  padding: 0 12px;
+  display: inline-block;
+  transition: all 0.3s;
+  height: 100%;
+}
+.user-avatar .action > i {
+  vertical-align: middle;
+  color: #666;
+}
+.user-avatar .action:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+:global(.user-avatar .action.ant-popover-open) {
+  background: rgba(0, 0, 0, 0.025);
+}
+.user-avatar .search {
+  padding: 0 12px;
+}
+.user-avatar .search:hover {
+  background: transparent;
+}
+.user-avatar .ant-avatar {
+  margin: 20px 8px 20px 0;
+  color: #1890ff;
+  background: rgba(255, 255, 255, 0.85);
+  vertical-align: middle;
+}
+.user-avatar .dark {
+  height: 64px;
+}
+.user-avatar .dark .action {
+  color: rgba(255, 255, 255, 0.85);
+}
+.user-avatar .dark .action > i {
+  color: rgba(255, 255, 255, 0.85);
+}
+.user-avatar .dark .action:hover,
+.user-avatar .dark .action:global(.ant-popover-open) {
+  background: #1890ff;
+}
+.user-avatar .dark .action :global(.ant-badge) {
+  color: rgba(255, 255, 255, 0.85);
+}
+@media only screen and (max-width: 1366px) {
+  .user-avatar {
+    float: right;
+  }
+  .user-avatar .header :global(.ant-divider-vertical) {
+    vertical-align: unset;
+  }
+  .user-avatar .header .name {
+    display: none;
+  }
+  .user-avatar .header .right {
+    position: absolute;
+    right: 12px;
+    top: 0;
+    background: #fff;
+  }
+  .user-avatar .header .right .account .avatar {
+    margin-right: 0;
+  }
+}
