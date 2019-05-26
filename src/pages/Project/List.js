@@ -322,6 +322,7 @@ class TableList extends PureComponent {
       });
     }).then(res => {
       // console.log('res :', res);
+      if(!res) return;
       if (res.code === 0) {
         this.setState({
           loading: false,

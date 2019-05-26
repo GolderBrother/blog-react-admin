@@ -1,19 +1,23 @@
 @import '~antd/lib/style/themes/default.less';
 @import '~@/utils/utils.less';
-
+// @import '~@/styles/imgs.less';
+// @import '~@/styles/global.less';
 
 .pageHeaderContent {
   display: flex;
+
   .avatar {
     flex: 0 1 72px;
     margin-bottom: 8px;
-    & > span {
+
+    &>span {
       border-radius: 72px;
       display: block;
       width: 72px;
       height: 72px;
     }
   }
+
   .content {
     position: relative;
     top: 4px;
@@ -21,6 +25,7 @@
     flex: 1 1 auto;
     color: @text-color-secondary;
     line-height: 22px;
+
     .contentTitle {
       font-size: 20px;
       line-height: 28px;
@@ -29,32 +34,86 @@
       margin-bottom: 12px;
     }
   }
+
+}
+
+.pageBodyWrapper {
+  margin-top: 20px;
+
+  .gutterRow {
+    .gutterCow {
+      margin-top: 10px;
+
+      .gutterBox {
+        margin-bottom: 10px;
+
+        .listGroup {
+          display: flex;
+          width: 100%;
+          padding-left: 0;
+          margin: 0 auto;
+          justify-content: center;
+
+          &Item {
+            margin: 0 5px;
+            flex-direction: column;
+            text-align: center;
+
+            .name {
+              margin: 5px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  img {
+    vertical-align: middle;
+
+    &.img {
+      &Responsive {
+        width: 100%;
+        height: auto;
+      }
+
+      &Circle {
+        border-radius: 50%;
+      }
+    }
+  }
+
 }
 
 .extraContent {
   .clearfix();
   float: right;
   white-space: nowrap;
+
   .statItem {
     padding: 0 32px;
     position: relative;
     display: inline-block;
-    > p:first-child {
+
+    >p:first-child {
       color: @text-color-secondary;
       font-size: @font-size-base;
       line-height: 22px;
       margin-bottom: 4px;
     }
-    > p {
+
+    >p {
       color: @heading-color;
       font-size: 30px;
       line-height: 38px;
       margin: 0;
-      > span {
+
+      >span {
         color: @text-color-secondary;
         font-size: 20px;
       }
     }
+
     &:after {
       background-color: @border-color-split;
       position: absolute;
@@ -64,8 +123,10 @@
       height: 40px;
       content: '';
     }
+
     &:last-child {
       padding-right: 0;
+
       &:after {
         display: none;
       }
@@ -82,8 +143,10 @@
   .activeCard {
     margin-bottom: 24px;
   }
+
   .extraContent {
     margin-left: -44px;
+
     .statItem {
       padding: 0 16px;
     }
@@ -94,12 +157,15 @@
   .activeCard {
     margin-bottom: 24px;
   }
+
   .extraContent {
     float: none;
     margin-right: 0;
+
     .statItem {
       padding: 0 16px;
       text-align: left;
+
       &:after {
         display: none;
       }
@@ -116,10 +182,12 @@
 @media screen and (max-width: @screen-sm) {
   .pageHeaderContent {
     display: block;
+
     .content {
       margin-left: 0;
     }
   }
+
   .extraContent {
     .statItem {
       float: none;
