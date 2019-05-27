@@ -79,6 +79,8 @@ export default {
   'menu.timeAxis.list': 'list',
   'menu.project': 'project',
   'menu.project.list': 'list',
+  'menu.tools': 'tools',
+  'menu.tools.list': 'list',
   'menu.tag': 'tag',
   'menu.tag.list': 'list',
   'menu.otherUser': 'user',

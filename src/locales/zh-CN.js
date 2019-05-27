@@ -56,6 +56,8 @@ export default {
   'menu.timeAxis.list': '时间轴列表',
   'menu.project': '项目',
   'menu.project.list': '项目列表',
+  'menu.tools': '小工具',
+  'menu.tools.list': '小工具列表',
   'menu.tag': '标签',
   'menu.tag.list': '标签列表',
   'menu.otherUser': '用户管理',

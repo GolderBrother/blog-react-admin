@@ -134,6 +134,18 @@ export default [
         ],
       },
       {
+        path: '/tools',
+        name: 'tools',
+        icon: 'tool',
+        routes: [
+          {
+            path: '/tools/list',
+            name: 'list',
+            component: './Tools/List'
+          }
+        ]
+      },
+      {
         name: 'exception',
         icon: 'warning',
         path: '/exception',
