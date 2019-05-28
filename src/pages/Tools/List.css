@@ -12,6 +12,9 @@
   margin-top: 20px;
   font-size: 18px;
 }
+.mar-t30 {
+  margin-top: '30px';
+}
 .ant-tabs-nav .ant-tabs-tab {
   height: auto !important;
 }
@@ -29,7 +32,7 @@
 .issue {
   text-align: center;
 }
-.activeP {
+p.activeP {
   background: #EAF8FE;
   color: #000;
   font-weight: bold;
@@ -43,7 +46,7 @@
   line-height: 25px;
   padding-left: 30px;
 }
-.bmibox .ant-btn {
+.bmi-box .ant-btn {
   width: 48%;
   float: left;
   margin: 1%;

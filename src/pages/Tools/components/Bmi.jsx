@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Form, message, Row, Col, Input, Icon  } from 'antd';
-
+import { Button, Card, Form, message, Row, Col, Input, Icon } from 'antd';
+import "./Bmi.less";
 // 使用这个装饰器后就可以获取到form对象 this.props.form，才能使用 form 对象上面的方法
 @Form.create()
 export default class Bmi extends Component {
@@ -9,11 +9,10 @@ export default class Bmi extends Component {
     this.state = {
       title: 'Bmi',
       bmi: '',
-      level: '',
+      level: null,
     };
   }
-  handleSubmit(e) {
-    e = e || window.event;
+  handleSubmit(e = window.event) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       err && message.error('error!');
@@ -39,10 +38,9 @@ export default class Bmi extends Component {
         level = 5;
         break;
     }
-    console.log(level);
     this.setState({
       bmi,
-      level,
+      level
     });
   }
   handleReset(e) {
@@ -81,9 +79,9 @@ export default class Bmi extends Component {
     let i = this.state.level;
     const { getFieldDecorator } = this.props.form;
     return (
-      <div className="bmibox" style={{ marginTop: '80px' }}>
+      <div className="bmi-box mar-t30" style={{marginTop:'30px'}}>
         <Form onSubmit={e => this.handleSubmit(e)}>
-          <Row type="flex" justify="center">
+          <Row type="flex" justify="center" style={{marginBottom: "10px"}}>
             <Col span={10}>
               {/* weight 声明变量可获取值 */}
               {getFieldDecorator('weight', {
@@ -97,7 +95,7 @@ export default class Bmi extends Component {
               )}
             </Col>
           </Row>
-          <Row type="flex" justify="center">
+          <Row type="flex" justify="center" style={{marginBottom: "10px"}}>
             <Col span={10}>
               {getFieldDecorator('height', {
                 rules: [{ required: true, message: 'Please input your height!' }],
@@ -110,42 +108,22 @@ export default class Bmi extends Component {
               )}
             </Col>
           </Row>
-          <Row type="flex" justify="center">
-            <Col span={10}>
+          <Row type="flex" justify="center" style={{marginBottom: "10px"}}>
+            <Col span={10} justify="center">
               {/* 设置 button 原生的 type 值 */}
-              <Button style={{ width: '50%' }} type="primary" htmlType="submit">
+              <Button style={{ width: '45%', marginLeft: '2.5%', marginRight: '2.5%' }} type="primary" htmlType="submit">
                 计算
               </Button>
-              <Button style={{ width: '50%' }} type="primary" onClick={e => this.handleReset(e)}>
+              <Button style={{ width: '45%', marginLeft: '2.5%', marginRight: '2.5%' }} type="primary" onClick={e => this.handleReset(e)}>
                 重置
               </Button>
             </Col>
           </Row>
-          <Row type="flex" justify="center">
+          <Row type="flex" justify="center" style={{marginBottom: "10px"}}>
             <Col span={10}>
               <Card id="cardWrap">
-                {/* <p className={i == 1 ? 'activeP' : ''}>
-                  偏瘦
-                  {'<18.5'}
-                </p>
-                <p className={i == 2 ? 'activeP' : ''}>
-                  正常
-                  {'18.5-24.9'}
-                </p>
-                <p className={i == 3 ? 'activeP' : ''}>
-                  超重
-                  {'18.5-24.9'}
-                </p>
-                <p className={i == 4 ? 'activeP' : ''}>
-                  偏胖
-                  {'25.0-29.0'}
-                </p>
-                <p className={i == 5 ? 'activeP' : ''}>
-                  肥胖
-                  {'18.5-24.9'}
-                </p> */}
                 {this.weightConfig.map((item, index) => (
-                  <p className={i == index + 1 ? 'activeP' : ''}>
+                  <p key={index} className={i === index + 1 ? 'activeP' : ''}>
                     {item.text}
                     {item.range}
                   </p>

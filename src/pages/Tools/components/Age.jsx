@@ -28,7 +28,7 @@ export default class Age extends Component {
   render() {
     const nowTime = new Date().toISOString().substring(0, 10);
     return (
-      <div className="agebox">
+      <div className="age-box mar-t30" style={{marginTop:'30px'}}>
         <Row type="flex" justify="center" span={10}>
           <Col>
             <h2>{this.state.title}</h2>
