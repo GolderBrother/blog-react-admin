@@ -71,7 +71,7 @@ const initUserAuthInfo = () => {
       key: '361000',
     },
   };
-  return userAuth; 
+  return userAuth;
 }
 
 // 登陆成功的处理函数
@@ -100,43 +100,57 @@ export default {
       if (!response) {
         return
       }
-
-      if (response.code === 0) {
-        response.currentAuthority = response.data.name || 'admin';
-        response.status = 'ok';
-        response.type = 'account';
-        yield put({
-          type: 'changeLoginStatus',
-          payload: response,
-        });
-      }
-
+      console.log(response)
+      // if (response.code === 0) {
+      //   response.currentAuthority = response.data.name || 'admin';
+      //   response.status = 'ok';
+      //   response.type = 'account';
+      //   yield put({
+      //     type: 'changeLoginStatus',
+      //     payload: response,
+      //   });
+      // }
       // Login successfully
-      if (response.code === 0) {
-        reloadAuthorized();
-        const urlParams = new URL(window.location.href);
-        const params = getPageQuery();
-        handleLoginSuccess(payload);
-        let {
-          redirect
-        } = params;
-        if (redirect) {
-          const redirectUrlParams = new URL(redirect);
-          if (redirectUrlParams.origin === urlParams.origin) {
-            redirect = redirect.substr(urlParams.origin.length);
-            if (redirect.startsWith('/#')) {
-              redirect = redirect.substr(2);
+      try {
+        if (response.code === 0) {
+          response.currentAuthority = response.data.name || 'admin';
+          response.status = 'ok';
+          response.type = 'account';
+          yield put({
+            type: 'changeLoginStatus',
+            payload: response,
+          });
+
+          reloadAuthorized();
+          const urlParams = new URL(window.location.href);
+          const params = getPageQuery();
+          handleLoginSuccess(payload);
+          let {
+            redirect
+          } = params;
+          if (redirect) {
+            const redirectUrlParams = new URL(redirect);
+            if (redirectUrlParams.origin === urlParams.origin) {
+              redirect = redirect.substr(urlParams.origin.length);
+              if (redirect.startsWith('/#')) {
+                redirect = redirect.substr(2);
+              }
+            } else {
+              window.location.href = redirect;
+              return;
             }
-          } else {
-            window.location.href = redirect;
-            return;
           }
+          console.log('redirect :', redirect);
+          yield put(routerRedux.replace(redirect || '/dashboard/workplace'));
+        } else {
+          message.error({
+            content: response.message
+          });
         }
-        console.log('redirect :', redirect);
-        yield put(routerRedux.replace(redirect || '/dashboard/workplace'));
-      } else {
+      } catch (error) {
+        console.log(error);
         message.error({
-          content: response.message
+          content: error.message
         });
       }
     },

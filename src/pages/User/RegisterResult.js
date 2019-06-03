@@ -7,7 +7,7 @@ import styles from './RegisterResult.less';
 
 const actions = (
   <div className={styles.actions}>
-    <a href="">
+    <a href="http://email.qq.com" target="_blank">
       <Button size="large" type="primary">
         <FormattedMessage id="app.register-result.view-mailbox" />
       </Button>

@@ -23,7 +23,7 @@ import UserInfo from './UserInfo';
 
 import avatarImg from '../assets/images/user_avatar.png';
 import './BasicLayout.scss';
-import reqwest from 'reqwest';
+import request from 'request';
 const count = 3;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat&noinfo`;
 
@@ -262,7 +262,7 @@ class BasicLayout extends React.PureComponent {
   }
 
   getData = callback => {
-    reqwest({
+    request({
       url: fakeDataUrl,
       type: 'json',
       method: 'get',

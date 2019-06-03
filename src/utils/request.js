@@ -36,7 +36,7 @@ const checkStatus = response => {
     description: errortext,
   });
   const error = new Error(errortext);
-  error.name = response.status;
+  error.status = response.status;
   error.response = response;
   throw error;
 };
@@ -140,7 +140,7 @@ export default function request(
       return response.json();
     })
     .catch(e => {
-      const status = e.name;
+      const status = e.status;
       if (status === 401) {
         // @HACK
         /* eslint-disable no-underscore-dangle */
@@ -151,7 +151,8 @@ export default function request(
       }
       // environment should not be used
       if (status === 403) {
-        router.push('/exception/403');
+        // router.push('/exception/403');
+        router.push('/user/login');
         return;
       }
       if (status <= 504 && status >= 500) {

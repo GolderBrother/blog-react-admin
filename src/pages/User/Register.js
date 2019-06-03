@@ -5,6 +5,7 @@ import Link from 'umi/link';
 import router from 'umi/router';
 import { Form, Input, Button, Select, Row, Col, Popover, Progress } from 'antd';
 import styles from './Register.less';
+import { MD5_SUFFIX, md5 } from '../../utils/utils';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -95,6 +96,8 @@ class Register extends Component {
     form.validateFields({ force: true }, (err, values) => {
       if (!err) {
         const { prefix } = this.state;
+        // 密码需要进行加密
+        values.password = md5(MD5_SUFFIX + values.password);
         dispatch({
           type: 'register/submit',
           payload: {
@@ -266,7 +269,7 @@ class Register extends Component {
                     message: formatMessage({ id: 'validation.phone-number.required' }),
                   },
                   {
-                    pattern: /^\d{10}$/,
+                    pattern: /^1(1|3|5|6|7|8)\d{9}$/,
                     message: formatMessage({ id: 'validation.phone-number.wrong-format' }),
                   },
                 ],

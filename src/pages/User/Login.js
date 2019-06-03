@@ -85,6 +85,10 @@ class LoginPage extends Component {
     />
   );
 
+  register = () => {
+    this.props.history.push("/user/register");
+  }
+
   render() {
     const { login, submitting } = this.props;
     const { type, autoLogin } = this.state;
@@ -104,20 +108,20 @@ class LoginPage extends Component {
               id: 'app.login.tab-login-credentials',
             })}
           >
-            {' '}
+            
             {login.status === 'error' &&
               login.type === 'account' &&
               !submitting &&
-              this.renderMessage('账户或密码错误（admin/user）')}{' '}
-            {/* <UserName name="userName" placeholder="admin/user" /> */}{' '}
-            {/* <UserName name="email" placeholder="admin/user" /> */}{' '}
+              this.renderMessage('账户或密码错误（admin/user）')}
+            {/* <UserName name="userName" placeholder="admin/user" /> */}
+            {/* <UserName name="email" placeholder="admin/user" /> */}
             <UserName name="username" placeholder="admin/user" />
             <Password
               name="password"
               placeholder="admin/123456"
               onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
-            />{' '}
-          </Tab>{' '}
+            />
+          </Tab>
           {/* <Tab key="account" tab={formatMessage({ id: 'app.login.tab-login-credentials' })}>
                     {login.status === 'error' &&
                       login.type === 'account' &&
@@ -129,7 +133,7 @@ class LoginPage extends Component {
                       placeholder="888888/123456"
                       onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
                     /> 
-                  </Tab> */}{' '}
+                  </Tab> */}
           {/* <Tab key="mobile" tab={formatMessage({ id: 'app.login.tab-login-mobile' })}>
                     {login.status === 'error' &&
                       login.type === 'mobile' &&
@@ -137,11 +141,11 @@ class LoginPage extends Component {
                       this.renderMessage('验证码错误')}
                     <Mobile name="mobile" />
                     <Captcha name="captcha" countDown={120} onGetCaptcha={this.onGetCaptcha} />
-                  </Tab> */}{' '}
+                  </Tab> */}
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
               <FormattedMessage id="app.login.remember-me" />
-            </Checkbox>{' '}
+            </Checkbox>
             <a
               style={{
                 float: 'right',
@@ -149,23 +153,26 @@ class LoginPage extends Component {
               href=""
             >
               <FormattedMessage id="app.login.forgot-password" />
-            </a>{' '}
+            </a>
             <p
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
               }}
             >
-              <a onClick={this.register}> 或 现在就去注册! </a>{' '}
+              {/* <a onClick={this.register}> 或 现在就去注册! </a> */}
+              <Link className={styles.register} to="/User/Register">
+                <FormattedMessage id="app.login.signup" />
+              </Link>
               <a onClick={this.gitHub}>
                 <Icon type="github" />
-                (第三方登录){' '}
-              </a>{' '}
-            </p>{' '}
-          </div>{' '}
+                (第三方登录)
+              </a>
+            </p>
+          </div>
           <Submit loading={submitting}>
             <FormattedMessage id="app.login.login" />
-          </Submit>{' '}
+          </Submit>
           {/* <div className={styles.other}>
                     <FormattedMessage id="app.login.sign-in-with" />
                     <Icon type="alipay-circle" className={styles.icon} theme="outlined" />
@@ -174,8 +181,8 @@ class LoginPage extends Component {
                     <Link className={styles.register} to="/User/Register">
                       <FormattedMessage id="app.login.signup" />
                     </Link>
-                  </div> */}{' '}
-        </Login>{' '}
+                  </div> */}
+        </Login>
       </div>
     );
   }

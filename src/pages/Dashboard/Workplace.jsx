@@ -24,6 +24,7 @@ class Workplace extends PureComponent {
     type: '', // 1 :其他友情用户 2: 是管理员的个人用户 ,'' 代表所有用户
     pageNum: 1,
     pageSize: 10,
+    project: null,
   };
   componentDidMount() {
     const { dispatch } = this.props;
@@ -35,10 +36,41 @@ class Workplace extends PureComponent {
     //   payload: Local.get('user'),
     // });
     this.getCurrentUser();
-    console.log(this.props);
+    this.getProjects();
     // dispatch({
     //   type: 'activities/fetchList',
     // });
+  }
+
+  // 获取项目列表数据
+  async getProjects() {
+    const params = {
+      keyword: this.state.keyword,
+      state: this.state.state,
+      pageNum: this.state.pageNum,
+      pageSize: this.state.pageSize,
+    };
+    const { dispatch } = this.props;
+    const res = await new Promise(resolve => {
+      dispatch({
+        type: 'project/queryProject',
+        payload: {
+          resolve,
+          params,
+        },
+      });
+    });
+    console.log(res);
+    if (!res) return;
+    if (res.code === 0) {
+      this.setState({
+        project: res.data,
+      });
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   }
 
   getCurrentUser() {
@@ -118,6 +150,14 @@ class Workplace extends PureComponent {
 
   render() {
     const { currentUser, currentUserLoading } = this.props;
+    const { project } = this.state;
+    // 状态： 1 是已经完成 ，2 是正在进行，3 是没完成
+    let unComplete, complete, isRunning;
+    if (project && project.list.length) {
+      complete = project.list.filter(item => item.state === 1).length;
+      isRunning = project.list.filter(item => item.state === 2).length;
+      unComplete = project.list.filter(item => item.state === 3).length;
+    }
     const pageHeaderContent =
       currentUser && Object.keys(currentUser).length ? (
         <div className={styles.pageHeaderContent}>
@@ -138,7 +178,7 @@ class Workplace extends PureComponent {
     const extraContent = (
       <div className={styles.extraContent}>
         <div className={styles.statItem}>
-          <p> 项目数 </p> <p> 56 </p>
+          <p> 项目数 </p> <p> {project && project.count} </p>
         </div>
         <div className={styles.statItem}>
           <p> 团队内排名 </p>
@@ -238,7 +278,14 @@ class Workplace extends PureComponent {
                 <Card bordered={false}>
                   <div className="pb-m">
                     <h3>任务</h3>
-                    <small>10个已经完成，2个待完成，1个正在进行中</small>
+                    <small>
+                      {complete || 0}
+                      个已经完成，
+                      {unComplete || 0}
+                      个待完成，
+                      {isRunning || 0}
+                      个正在进行中
+                    </small>
                   </div>
                   <a className="card-tool">
                     <Icon type="sync" />
@@ -272,10 +319,14 @@ class Workplace extends PureComponent {
                   <ul className={styles.listGroup + ' no-border'}>
                     <li className={styles.listGroupItem}>
                       <a href="javascript:void(0);" className="mr-m">
-                        <img src={b1} className={styles.imgResponsive + ' ' + styles.imgCircle} alt="test" />
+                        <img
+                          src={b1}
+                          className={styles.imgResponsive + ' ' + styles.imgCircle}
+                          alt="test"
+                        />
                       </a>
                       <div className="clear">
-                        <a href="javascript:void(0);" className={styles.name + " block"}>
+                        <a href="javascript:void(0);" className={styles.name + ' block'}>
                           鸣人
                         </a>
                         <span className="text-muted">终于当上火影了！</span>
@@ -283,7 +334,11 @@ class Workplace extends PureComponent {
                     </li>
                     <li className={styles.listGroupItem}>
                       <a href="javascript:void(0);" className="mr-m">
-                        <img src={b1} className={styles.imgResponsive + ' ' + styles.imgCircle} alt="test" />
+                        <img
+                          src={b1}
+                          className={styles.imgResponsive + ' ' + styles.imgCircle}
+                          alt="test"
+                        />
                       </a>
                       <div className="clear">
                         <a href="javascript:void(0);" className="block">
@@ -294,7 +349,11 @@ class Workplace extends PureComponent {
                     </li>
                     <li className={styles.listGroupItem}>
                       <a href="javascript:void(0);" className="mr-m">
-                        <img src={b1} className={styles.imgResponsive + ' ' + styles.imgCircle} alt="test" />
+                        <img
+                          src={b1}
+                          className={styles.imgResponsive + ' ' + styles.imgCircle}
+                          alt="test"
+                        />
                       </a>
                       <div className="clear">
                         <a href="javascript:void(0);" className="block">
@@ -305,7 +364,11 @@ class Workplace extends PureComponent {
                     </li>
                     <li className={styles.listGroupItem}>
                       <a href="javascript:void(0);" className="mr-m">
-                        <img src={b1} className={styles.imgResponsive + ' ' + styles.imgCircle} alt="test" />
+                        <img
+                          src={b1}
+                          className={styles.imgResponsive + ' ' + styles.imgCircle}
+                          alt="test"
+                        />
                       </a>
                       <div className="clear">
                         <a href="javascript:void(0);" className="block">
