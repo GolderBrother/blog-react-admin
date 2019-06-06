@@ -207,7 +207,7 @@ class ArticleComponent extends React.Component {
             <Select.Option value="0">草稿</Select.Option>
             <Select.Option value="1">发布</Select.Option>
           </Select>
-
+          {/* TODO: 这边文章类型还有问题，提交的时候如果没有手动更改类型，提交的默认为普通文章(1),并且这边的文章链接图片后期要改成图片地址，不能是base64的，浪费带宽 */}
           <Select
             style={{ width: 200, marginTop: 20, marginBottom: 20 }}
             placeholder="选择文章类型"
