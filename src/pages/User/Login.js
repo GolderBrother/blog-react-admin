@@ -112,10 +112,10 @@ class LoginPage extends Component {
             {login.status === 'error' &&
               login.type === 'account' &&
               !submitting &&
-              this.renderMessage('账户或密码错误（admin/user）')}
-            {/* <UserName name="userName" placeholder="admin/user" /> */}
-            {/* <UserName name="email" placeholder="admin/user" /> */}
-            <UserName name="username" placeholder="admin/user" />
+              this.renderMessage('账户或密码错误（admin/james）')}
+            {/* <UserName name="userName" placeholder="admin/james" /> */}
+            {/* <UserName name="email" placeholder="admin/james" /> */}
+            <UserName name="username" placeholder="admin/james" />
             <Password
               name="password"
               placeholder="admin/123456"
@@ -127,7 +127,7 @@ class LoginPage extends Component {
                       login.type === 'account' &&
                       !submitting &&
                       this.renderMessage('账户或密码错误（admin/888888）')}
-                    <UserName name="userName" placeholder="admin/user" />
+                    <UserName name="userName" placeholder="admin/james" />
                     <Password
                       name="password"
                       placeholder="888888/123456"

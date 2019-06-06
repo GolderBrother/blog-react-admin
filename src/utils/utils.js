@@ -4,7 +4,8 @@ import nzh from 'nzh/cn';
 import { parse, stringify } from 'qs';
 import crypto from 'crypto';
 
-export const MD5_SUFFIX = 'www.biaochenxuying.cn*&^%$#';
+export const MD5_SUFFIX = 'www.golderBrother.cn*&^%$#';
+
 export function md5 (pwd) {
   let md5 = crypto.createHash('md5');
   return md5.update(pwd).digest('hex');

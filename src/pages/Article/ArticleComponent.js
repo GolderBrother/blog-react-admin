@@ -117,6 +117,7 @@ class ArticleComponent extends React.Component {
     let originDefault = '原创';
     let stateDefault = '发布'; // 文章发布状态 => 0 草稿，1 发布
     let typeDefault = '普通文章'; // 文章类型 => 1: 普通文章，2: 简历，3: 管理员介绍
+    let type = articleDetail.type; // 文章类型 => 1: 普通文章，2: 简历，3: 管理员介绍
     let categoryDefault = [];
     let tagsDefault = [];
     if (changeType) {
@@ -210,13 +211,14 @@ class ArticleComponent extends React.Component {
           <Select
             style={{ width: 200, marginTop: 20, marginBottom: 20 }}
             placeholder="选择文章类型"
+            value={type}
             defaultValue={typeDefault}
             onChange={this.props.handleChangeType}
           >
             {/* 文章类型 => 1: 普通文章，2: 简历，3: 管理员介绍 */}
-            <Select.Option value="1">普通文章</Select.Option>
-            <Select.Option value="2">简历</Select.Option>
-            <Select.Option value="3">管理员介绍</Select.Option>
+            <Select.Option value="1" title="普通文章">普通文章</Select.Option>
+            <Select.Option value="2" title="简历">简历</Select.Option>
+            <Select.Option value="3" title="管理员介绍">管理员介绍</Select.Option>
           </Select>
 
           <Select
