@@ -138,7 +138,7 @@ class TableList extends PureComponent {
     });
   };
 
-  handleSearch = () => {
+  handleSearch = async () => {
     this.setState({
       loading: true,
     });
@@ -149,7 +149,7 @@ class TableList extends PureComponent {
       pageNum: this.state.pageNum,
       pageSize: this.state.pageSize,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'otherUser/queryUser',
         payload: {
@@ -157,29 +157,28 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      // console.log('res :', res);
-      if(!res) return;
-      if (res.code === 0) {
-        this.setState({
-          loading: false,
-        });
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    // console.log('res :', res);
+    if(!res) return;
+    if (res.code === 0) {
+      this.setState({
+        loading: false,
+      });
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
-  handleDelete = (text, record) => {
+  handleDelete = async (text, record) => {
     // console.log('text :', text);
     // console.log('record :', record);
     const { dispatch } = this.props;
     const params = {
       id: record._id,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'otherUser/delUser',
         payload: {
@@ -187,20 +186,19 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      // console.log('res :', res);
-      if(!res) return;
-      if (res.code === 0) {
-        notification.success({
-          message: res.message,
-        });
-        this.handleSearch(this.state.pageNum, this.state.pageSize);
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    // console.log('res :', res);
+    if(!res) return;
+    if (res.code === 0) {
+      notification.success({
+        message: res.message,
+      });
+      this.handleSearch(this.state.pageNum, this.state.pageSize);
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
   renderSimpleForm() {

@@ -73,7 +73,7 @@ class Workplace extends PureComponent {
     }
   }
 
-  getCurrentUser() {
+  async getCurrentUser() {
     const { dispatch } = this.props;
     let user = Local.get('user');
     const params = {
@@ -82,34 +82,34 @@ class Workplace extends PureComponent {
       pageNum: this.state.pageNum,
       pageSize: this.state.pageSize,
     };
-    new Promise(resolve => {
-      dispatch({
-        type: 'otherUser/queryUser',
-        payload: {
-          resolve,
-          params,
-        },
+    try {
+      const res = await new Promise(resolve => {
+        dispatch({
+          type: 'otherUser/queryUser',
+          payload: {
+            resolve,
+            params,
+          },
+        });
       });
-    })
-      .then(res => {
-        if (res.code === 0) {
-          if (res.data && res.data.list) {
-            let item = res.data.list.find(_user => _user.name === user.username);
-            if (item) {
-              user.roleType = item.type;
-              user.name = item.type === 0 ? '管理员' : '普通用户';
-            }
-            dispatch({
-              type: 'user/saveCurrentUser',
-              payload: user,
-            });
-            Local.set('user', user);
+      if(!res) return;
+      if (res.code === 0) {
+        if (res.data && res.data.list) {
+          let item = res.data.list.find(_user => _user.name === user.username);
+          if (item) {
+            user.roleType = item.type;
+            user.name = item.type === 0 ? '管理员' : '普通用户';
           }
+          dispatch({
+            type: 'user/saveCurrentUser',
+            payload: user,
+          });
+          Local.set('user', user);
         }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      }
+    } catch (error) {
+      console.log(err);
+    }
   }
 
   renderActivities() {

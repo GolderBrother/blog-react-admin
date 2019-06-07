@@ -8,7 +8,7 @@ import { connect } from 'dva';
   category,
 }))
 
-// TODO: 编辑获取文章详细信息信息不一致，需要解决 2019.5.23
+// TODO: 编辑获取文章详细信息不一致，需要解决 2019.5.23
 class ArticleComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +27,7 @@ class ArticleComponent extends React.Component {
     this.handleSearchCategory();
   }
 
-  handleSearchTag = () => {
+  handleSearchTag = async () => {
     this.setState({
       loading: true,
     });
@@ -37,7 +37,7 @@ class ArticleComponent extends React.Component {
       pageNum: this.state.pageNum,
       pageSize: this.state.pageSize,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'tag/queryTag',
         payload: {
@@ -45,21 +45,20 @@ class ArticleComponent extends React.Component {
           params,
         },
       });
-    }).then(res => {
-      if(!res) return;
-      if (res.code === 0) {
-        this.setState({
-          loading: false,
-        });
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    if (!res) return;
+    if (res.code === 0) {
+      this.setState({
+        loading: false,
+      });
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
-  handleSearchCategory = () => {
+  handleSearchCategory = async () => {
     this.setState({
       loading: true,
     });
@@ -69,7 +68,7 @@ class ArticleComponent extends React.Component {
       pageNum: this.state.pageNum,
       pageSize: this.state.pageSize,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'category/queryCategory',
         payload: {
@@ -77,18 +76,17 @@ class ArticleComponent extends React.Component {
           params,
         },
       });
-    }).then(res => {
-      // console.log('res :', res);
-      if (res.code === 0) {
-        this.setState({
-          loading: false,
-        });
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    if (!res) return;
+    if (res.code === 0) {
+      this.setState({
+        loading: false,
+      });
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
   render() {
@@ -211,14 +209,20 @@ class ArticleComponent extends React.Component {
           <Select
             style={{ width: 200, marginTop: 20, marginBottom: 20 }}
             placeholder="选择文章类型"
-            value={type}
+            // value={type}
             defaultValue={typeDefault}
             onChange={this.props.handleChangeType}
           >
             {/* 文章类型 => 1: 普通文章，2: 简历，3: 管理员介绍 */}
-            <Select.Option value="1" title="普通文章">普通文章</Select.Option>
-            <Select.Option value="2" title="简历">简历</Select.Option>
-            <Select.Option value="3" title="管理员介绍">管理员介绍</Select.Option>
+            <Select.Option value="1" title="普通文章">
+              普通文章
+            </Select.Option>
+            <Select.Option value="2" title="简历">
+              简历
+            </Select.Option>
+            <Select.Option value="3" title="管理员介绍">
+              管理员介绍
+            </Select.Option>
           </Select>
 
           <Select

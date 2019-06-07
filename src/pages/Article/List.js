@@ -235,7 +235,7 @@ class TableList extends PureComponent {
     this.handleSearch(this.state.pageNum, this.state.pageSize);
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     const { dispatch } = this.props;
     const { articleDetail } = this.props.article;
     if (!this.state.title) {
@@ -282,7 +282,7 @@ class TableList extends PureComponent {
         tags: this.state.tags,
         category: this.state.category,
       };
-      new Promise(resolve => {
+      const res = await new Promise(resolve => {
         dispatch({
           type: 'article/updateArticle',
           payload: {
@@ -290,35 +290,35 @@ class TableList extends PureComponent {
             params,
           },
         });
-      }).then(res => {
-        if (res.code === 0) {
-          notification.success({
-            message: res.message,
-          });
-          this.setState({
-            visible: false,
-            changeType: false,
-            title: '',
-            author: 'biaochenxuying',
-            keyword: '',
-            content: '',
-            desc: '',
-            img_url: '',
-            origin: 0, // 0 原创，1 转载，2 混合
-            state: 1, // 文章发布状态 => 0 草稿，1 已发布
-            type: 1, // 文章类型 => 1: 普通文章，2: 简历，3: 管理员介绍
-            tags: '',
-            category: '',
-            tagsDefault: [],
-            categoryDefault: [],
-          });
-          this.handleSearch(this.state.pageNum, this.state.pageSize);
-        } else {
-          notification.error({
-            message: res.message,
-          });
-        }
       });
+      if (!res) return;
+      if (res.code === 0) {
+        notification.success({
+          message: res.message,
+        });
+        this.setState({
+          visible: false,
+          changeType: false,
+          title: '',
+          author: 'golderBrother',
+          keyword: '',
+          content: '',
+          desc: '',
+          img_url: '',
+          origin: 0, // 0 原创，1 转载，2 混合
+          state: 1, // 文章发布状态 => 0 草稿，1 已发布
+          type: 1, // 文章类型 => 1: 普通文章，2: 简历，3: 管理员介绍
+          tags: '',
+          category: '',
+          tagsDefault: [],
+          categoryDefault: [],
+        });
+        this.handleSearch(this.state.pageNum, this.state.pageSize);
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
     } else {
       const params = {
         title: this.state.title,
@@ -333,7 +333,7 @@ class TableList extends PureComponent {
         tags: this.state.tags,
         category: this.state.category,
       };
-      new Promise(resolve => {
+      const res = await new Promise(resolve => {
         dispatch({
           type: 'article/addArticle',
           payload: {
@@ -341,22 +341,22 @@ class TableList extends PureComponent {
             params,
           },
         });
-      }).then(res => {
-        if (res.code === 0) {
-          notification.success({
-            message: res.message,
-          });
-          this.setState({
-            visible: false,
-            chnageType: false,
-          });
-          this.handleSearch(this.state.pageNum, this.state.pageSize);
-        } else {
-          notification.error({
-            message: res.message,
-          });
-        }
       });
+      if (!res) return;
+      if (res.code === 0) {
+        notification.success({
+          message: res.message,
+        });
+        this.setState({
+          visible: false,
+          chnageType: false,
+        });
+        this.handleSearch(this.state.pageNum, this.state.pageSize);
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
     }
   }
 
@@ -462,13 +462,13 @@ class TableList extends PureComponent {
     );
   }
 
-  getArticleDetail(callback) {
+  async getArticleDetail(callback) {
     const { dispatch } = this.props;
     const params = {
       id: this.state.article_id,
       filter: 2, // 文章的评论过滤 => 1: 过滤，2: 不过滤
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'article/getArticleDetail',
         payload: {
@@ -476,10 +476,9 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      callback ? callback() : null;
-      // console.log('callback',callback)
     });
+    // console.log('getArticleDetail res: %o',res);
+    callback ? callback() : null;
   }
 
   showCommentModal = record => {
@@ -501,14 +500,14 @@ class TableList extends PureComponent {
     );
   };
 
-  showModal = record => {
+  showModal = async record => {
     if (record._id) {
       const { dispatch } = this.props;
       const params = {
         id: record._id,
         filter: 2, // 文章的评论过滤 => 1: 过滤，2: 不过滤
       };
-      new Promise(resolve => {
+      const res = await new Promise(resolve => {
         dispatch({
           type: 'article/getArticleDetail',
           payload: {
@@ -516,49 +515,46 @@ class TableList extends PureComponent {
             params,
           },
         });
-      }).then(res => {
-        // console.log('res :', res)
-        const tagsArr = [];
-        if (res.data.tags && res.data.tags.length) {
-          for (let i = 0; i < res.data.tags.length; i++) {
-            const e = res.data.tags[i];
-            tagsArr.push(e._id);
-          }
-        }
-        const tags = tagsArr.length ? tagsArr.join() : '';
-        const categoryArr = [];
-        if (res.data.category && res.data.category.length) {
-          for (let i = 0; i < res.data.category.length; i++) {
-            const e = res.data.category[i];
-            categoryArr.push(e._id);
-          }
-        }
-        const category = categoryArr.length ? categoryArr.join() : '';
-        console.log('tagsArr :', tagsArr);
-        console.log('categoryArr :', categoryArr);
-        if (res.code === 0) {
-          this.setState({
-            visible: true,
-            changeType: true,
-            title: res.data.title,
-            content: res.data.content,
-            state: res.data.state,
-            author: res.data.author,
-            keyword: res.data.keyword,
-            desc: res.data.desc,
-            img_url: res.data.img_url,
-            origin: res.data.origin, // 0 原创，1 转载，2 混合
-            tags,
-            category,
-            tagsDefault: tagsArr,
-            categoryDefault: categoryArr,
-          });
-        } else {
-          notification.error({
-            message: res.message,
-          });
-        }
       });
+      if(!res) return;
+      const tagsArr = [];
+      if (res.data.tags && res.data.tags.length) {
+        for (let i = 0; i < res.data.tags.length; i++) {
+          const e = res.data.tags[i];
+          tagsArr.push(e._id);
+        }
+      }
+      const tags = tagsArr.length ? tagsArr.join() : '';
+      const categoryArr = [];
+      if (res.data.category && res.data.category.length) {
+        for (let i = 0; i < res.data.category.length; i++) {
+          const e = res.data.category[i];
+          categoryArr.push(e._id);
+        }
+      }
+      const category = categoryArr.length ? categoryArr.join() : '';
+      if (res.code === 0) {
+        this.setState({
+          visible: true,
+          changeType: true,
+          title: res.data.title,
+          content: res.data.content,
+          state: res.data.state,
+          author: res.data.author,
+          keyword: res.data.keyword,
+          desc: res.data.desc,
+          img_url: res.data.img_url,
+          origin: res.data.origin, // 0 原创，1 转载，2 混合
+          tags,
+          category,
+          tagsDefault: tagsArr,
+          categoryDefault: categoryArr,
+        });
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
     } else {
       this.setState({
         visible: true,
@@ -593,7 +589,7 @@ class TableList extends PureComponent {
     });
   };
 
-  handleSearch = () => {
+  handleSearch = async () => {
     this.setState({
       loading: true,
     });
@@ -604,7 +600,7 @@ class TableList extends PureComponent {
       pageNum: this.state.pageNum,
       pageSize: this.state.pageSize,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'article/queryArticle',
         payload: {
@@ -612,28 +608,28 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      // console.log('res :', res);
-      if (res.code === 0) {
-        this.setState({
-          loading: false,
-        });
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    // console.log('res :', res);
+    if(!res) return;
+    if (res.code === 0) {
+      this.setState({
+        loading: false,
+      });
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
-  handleDelete = (text, record) => {
+  handleDelete = async (text, record) => {
     // console.log('text :', text);
     // console.log('record :', record);
     const { dispatch } = this.props;
     const params = {
       id: record._id,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'article/delArticle',
         payload: {
@@ -641,19 +637,19 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      // console.log('res :', res);
-      if (res.code === 0) {
-        notification.success({
-          message: res.message,
-        });
-        this.handleSearch(this.state.pageNum, this.state.pageSize);
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    // console.log('res :', res);
+    if(!res) return;
+    if (res.code === 0) {
+      notification.success({
+        message: res.message,
+      });
+      this.handleSearch(this.state.pageNum, this.state.pageSize);
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
   renderSimpleForm() {

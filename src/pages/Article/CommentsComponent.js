@@ -19,7 +19,7 @@ class CommentsComponent extends React.Component {
 
   componentDidMount() {}
 
-  handleChangeState = (value, type, index, item) => {
+  handleChangeState = async (value, type, index, item) => {
     // console.log('value', value)
     // console.log('type', type)
     // console.log('index', index)
@@ -33,7 +33,7 @@ class CommentsComponent extends React.Component {
         id: item._id,
         state: parseInt(value),
       };
-      new Promise(resolve => {
+      const res = await new Promise(resolve => {
         dispatch({
           type: 'article/changeComment',
           payload: {
@@ -41,29 +41,28 @@ class CommentsComponent extends React.Component {
             params,
           },
         });
-      }).then(res => {
-        // console.log('res :', res);
-        if (res.code === 0) {
-          this.setState({
-            loading: false,
-          });
-          this.props.getArticleDetail();
-          notification.success({
-            message: res.message,
-          });
-        } else {
-          notification.error({
-            message: res.message,
-          });
-        }
       });
+      if (!res) return;
+      if (res.code === 0) {
+        this.setState({
+          loading: false,
+        });
+        this.props.getArticleDetail();
+        notification.success({
+          message: res.message,
+        });
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
     } else {
       const params = {
         id: item._id,
         state: parseInt(value),
         index: index,
       };
-      new Promise(resolve => {
+      const res = await new Promise(resolve => {
         dispatch({
           type: 'article/changeThirdComment',
           payload: {
@@ -71,22 +70,22 @@ class CommentsComponent extends React.Component {
             params,
           },
         });
-      }).then(res => {
-        // console.log('res :', res);
-        if (res.code === 0) {
-          this.setState({
-            loading: false,
-          });
-          this.props.getArticleDetail();
-          notification.success({
-            message: res.message,
-          });
-        } else {
-          notification.error({
-            message: res.message,
-          });
-        }
       });
+      // console.log('res :', res);
+      if(!res) return;
+      if (res.code === 0) {
+        this.setState({
+          loading: false,
+        });
+        this.props.getArticleDetail();
+        notification.success({
+          message: res.message,
+        });
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
     }
   };
 

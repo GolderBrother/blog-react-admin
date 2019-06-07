@@ -112,13 +112,12 @@ class TableList extends PureComponent {
       {
         state,
       },
-      () => {
+      async () => {
         const { dispatch } = this.props;
         const params = {
           state: this.state.state,
         };
-        return;
-        new Promise(resolve => {
+        const res = await new Promise(resolve => {
           dispatch({
             type: 'link/updateLink',
             payload: {
@@ -126,26 +125,25 @@ class TableList extends PureComponent {
               params,
             },
           });
-        }).then(res => {
-          // console.log('res :', res);
-          if (!res) return;
-          if (res.code === 0) {
-            notification.success({
-              message: res.message,
-            });
-            this.setState({
-              visible: false,
-            });
-            this.setState({
-              name: '',
-            });
-            this.handleSearch(this.state.pageNum, this.state.pageSize);
-          } else {
-            notification.error({
-              message: res.message,
-            });
-          }
         });
+        console.log('updateLink res :', res);
+        if (!res) return;
+        if (res.code === 0) {
+          notification.success({
+            message: res.message,
+          });
+          this.setState({
+            visible: false,
+          });
+          this.setState({
+            name: '',
+          });
+          this.handleSearch(this.state.pageNum, this.state.pageSize);
+        } else {
+          notification.error({
+            message: res.message,
+          });
+        }
       }
     );
   }
@@ -215,7 +213,7 @@ class TableList extends PureComponent {
     });
   };
 
-  handleOk = () => {
+  handleOk = async () => {
     const { dispatch } = this.props;
     const params = {
       name: this.state.name,
@@ -224,7 +222,7 @@ class TableList extends PureComponent {
       type: this.state.type,
       desc: this.state.desc,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'link/addLink',
         payload: {
@@ -232,26 +230,25 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      // console.log('res :', res);
-      if (!res) return;
-      if (res.code === 0) {
-        notification.success({
-          message: res.message,
-        });
-        this.setState({
-          visible: false,
-        });
-        this.setState({
-          name: '',
-        });
-        this.handleSearch(this.state.pageNum, this.state.pageSize);
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    // console.log('res :', res);
+    if (!res) return;
+    if (res.code === 0) {
+      notification.success({
+        message: res.message,
+      });
+      this.setState({
+        visible: false,
+      });
+      this.setState({
+        name: '',
+      });
+      this.handleSearch(this.state.pageNum, this.state.pageSize);
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
   handleCancel = e => {
@@ -260,7 +257,7 @@ class TableList extends PureComponent {
     });
   };
 
-  handleSearch = () => {
+  handleSearch = async () => {
     this.setState({
       loading: true,
     });
@@ -271,7 +268,7 @@ class TableList extends PureComponent {
       pageNum: this.state.pageNum,
       pageSize: this.state.pageSize,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'link/queryLink',
         payload: {
@@ -279,29 +276,27 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      // console.log('res :', res);
-      if (!res) return;
-      if (res.code === 0) {
-        this.setState({
-          loading: false,
-        });
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    if (!res) return;
+    if (res.code === 0) {
+      this.setState({
+        loading: false,
+      });
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
-  handleDelete = (text, record) => {
+  handleDelete = async (text, record) => {
     // console.log('text :', text);
     // console.log('record :', record);
     const { dispatch } = this.props;
     const params = {
       id: record._id,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'link/delLink',
         payload: {
@@ -309,20 +304,19 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      if (!res) return;
-      // console.log('res :', res);
-      if (res.code === 0) {
-        notification.success({
-          message: res.message,
-        });
-        this.handleSearch(this.state.pageNum, this.state.pageSize);
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    if (!res) return;
+    // console.log('res :', res);
+    if (res.code === 0) {
+      notification.success({
+        message: res.message,
+      });
+      this.handleSearch(this.state.pageNum, this.state.pageSize);
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
   renderSimpleForm() {

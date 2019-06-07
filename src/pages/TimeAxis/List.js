@@ -123,7 +123,7 @@ class TableList extends PureComponent {
     });
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     const { dispatch } = this.props;
     const { timeAxisDetail } = this.props.timeAxis;
     if (this.state.changeType) {
@@ -135,7 +135,7 @@ class TableList extends PureComponent {
         start_time: this.state.start_time,
         end_time: this.state.end_time,
       };
-      new Promise(resolve => {
+      const res = await new Promise(resolve => {
         dispatch({
           type: 'timeAxis/updateTimeAxis',
           payload: {
@@ -143,22 +143,22 @@ class TableList extends PureComponent {
             params,
           },
         });
-      }).then(res => {
-        if (res.code === 0) {
-          notification.success({
-            message: res.message,
-          });
-          this.setState({
-            visible: false,
-            chnageType: false,
-          });
-          this.handleSearch(this.state.pageNum, this.state.pageSize);
-        } else {
-          notification.error({
-            message: res.message,
-          });
-        }
       });
+      if (!res) return;
+      if (res.code === 0) {
+        notification.success({
+          message: res.message,
+        });
+        this.setState({
+          visible: false,
+          chnageType: false,
+        });
+        this.handleSearch(this.state.pageNum, this.state.pageSize);
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
     } else {
       const params = {
         state: this.state.stateComponent,
@@ -167,7 +167,7 @@ class TableList extends PureComponent {
         start_time: this.state.start_time,
         end_time: this.state.end_time,
       };
-      new Promise(resolve => {
+      const res = await new Promise(resolve => {
         dispatch({
           type: 'timeAxis/addTimeAxis',
           payload: {
@@ -175,22 +175,22 @@ class TableList extends PureComponent {
             params,
           },
         });
-      }).then(res => {
-        if (res.code === 0) {
-          notification.success({
-            message: res.message,
-          });
-          this.setState({
-            visible: false,
-            chnageType: false,
-          });
-          this.handleSearch(this.state.pageNum, this.state.pageSize);
-        } else {
-          notification.error({
-            message: res.message,
-          });
-        }
       });
+      if (!res) return;
+      if (res.code === 0) {
+        notification.success({
+          message: res.message,
+        });
+        this.setState({
+          visible: false,
+          chnageType: false,
+        });
+        this.handleSearch(this.state.pageNum, this.state.pageSize);
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
     }
   }
 
@@ -241,13 +241,13 @@ class TableList extends PureComponent {
     );
   }
 
-  showModal = record => {
+  showModal = async record => {
     if (record._id) {
       const { dispatch } = this.props;
       const params = {
         id: record._id,
       };
-      new Promise(resolve => {
+      const res = await new Promise(resolve => {
         dispatch({
           type: 'timeAxis/getTimeAxisDetail',
           payload: {
@@ -255,22 +255,22 @@ class TableList extends PureComponent {
             params,
           },
         });
-      }).then(res => {
-        // console.log('res :', res)
-        if (res.code === 0) {
-          this.setState({
-            visible: true,
-            changeType: true,
-            stateComponent: res.data.state,
-            title: res.data.title,
-            content: res.data.content,
-          });
-        } else {
-          notification.error({
-            message: res.message,
-          });
-        }
       });
+      // console.log('res :', res)
+      if(!res) return;
+      if (res.code === 0) {
+        this.setState({
+          visible: true,
+          changeType: true,
+          stateComponent: res.data.state,
+          title: res.data.title,
+          content: res.data.content,
+        });
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
     } else {
       this.setState({
         visible: true,
@@ -292,7 +292,7 @@ class TableList extends PureComponent {
     });
   };
 
-  handleSearch = () => {
+  handleSearch = async () => {
     this.setState({
       loading: true,
     });
@@ -303,7 +303,7 @@ class TableList extends PureComponent {
       pageNum: this.state.pageNum,
       pageSize: this.state.pageSize,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'timeAxis/queryTimeAxis',
         payload: {
@@ -311,28 +311,27 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      // console.log('res :', res);
-      if (res.code === 0) {
-        this.setState({
-          loading: false,
-        });
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    if(!res) return;
+    if (res.code === 0) {
+      this.setState({
+        loading: false,
+      });
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
-  handleDelete = (text, record) => {
+  handleDelete = async (text, record) => {
     // console.log('text :', text);
     // console.log('record :', record);
     const { dispatch } = this.props;
     const params = {
       id: record._id,
     };
-    new Promise(resolve => {
+    const res = await new Promise(resolve => {
       dispatch({
         type: 'timeAxis/delTimeAxis',
         payload: {
@@ -340,19 +339,19 @@ class TableList extends PureComponent {
           params,
         },
       });
-    }).then(res => {
-      // console.log('res :', res);
-      if (res.code === 0) {
-        notification.success({
-          message: res.message,
-        });
-        this.handleSearch(this.state.pageNum, this.state.pageSize);
-      } else {
-        notification.error({
-          message: res.message,
-        });
-      }
     });
+    // console.log('res :', res);
+    if(!res) return;
+    if (res.code === 0) {
+      notification.success({
+        message: res.message,
+      });
+      this.handleSearch(this.state.pageNum, this.state.pageSize);
+    } else {
+      notification.error({
+        message: res.message,
+      });
+    }
   };
 
   renderSimpleForm() {
