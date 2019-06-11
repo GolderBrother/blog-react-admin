@@ -28,6 +28,7 @@ export default {
 			const response = yield call(queryProject, params);
 			!!resolve && resolve(response); // 返回数据
 			// console.log('response :', response)
+			if(!response) return;
 			if (response.code === 0) {
 				yield put({
 					type: 'saveProjectList',
@@ -58,6 +59,7 @@ export default {
 			const { resolve, params } = payload;
 			const response = yield call(getProjectDetail, params);
 			!!resolve && resolve(response);
+			if(!response) return;
 			if (response.code === 0) {
 				yield put({
 					type: 'saveProjectDetail',

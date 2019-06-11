@@ -41,7 +41,7 @@ export default {
       });
     },
     * saveCurrentUser({
-      payload
+      payload: {}
     }, {
       call,
       put

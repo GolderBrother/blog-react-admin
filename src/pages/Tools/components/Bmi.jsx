@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Card, Form, message, Row, Col, Input, Icon } from 'antd';
-import "./Bmi.less";
+import Styles from "./Bmi.less";
 // 使用这个装饰器后就可以获取到form对象 this.props.form，才能使用 form 对象上面的方法
 @Form.create()
 export default class Bmi extends Component {
@@ -123,7 +123,7 @@ export default class Bmi extends Component {
             <Col span={10}>
               <Card id="cardWrap">
                 {this.weightConfig.map((item, index) => (
-                  <p key={index} className={i === index + 1 ? 'activeP' : ''}>
+                  <p key={index} style={{padding: "5px"}} className={i === index + 1 ? `${Styles.activeP} ${Styles.resultListItem}` : Styles.resultListItem}>
                     {item.text}
                     {item.range}
                   </p>

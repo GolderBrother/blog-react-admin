@@ -46,7 +46,7 @@ export default class Age extends Component {
             />
           </Col>
         </Row>
-        <Row type="flex" justify="center">
+        <Row style={{ marginTop: '10px' }} type="flex" justify="center">
           <Col span={10}>
             <Input addonBefore="您已在地球上生活了" addonAfter="天" value={this.state.day} />
           </Col>

@@ -37,24 +37,28 @@ class ArticleComponent extends React.Component {
       pageNum: this.state.pageNum,
       pageSize: this.state.pageSize,
     };
-    const res = await new Promise(resolve => {
-      dispatch({
-        type: 'tag/queryTag',
-        payload: {
-          resolve,
-          params,
-        },
+    try {
+      const res = await new Promise(resolve => {
+        dispatch({
+          type: 'tag/queryTag',
+          payload: {
+            resolve,
+            params,
+          },
+        });
       });
-    });
-    if (!res) return;
-    if (res.code === 0) {
-      this.setState({
-        loading: false,
-      });
-    } else {
-      notification.error({
-        message: res.message,
-      });
+      if (!res) return;
+      if (res.code === 0) {
+        this.setState({
+          loading: false,
+        });
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 

@@ -112,6 +112,7 @@ export default {
       // }
       // Login successfully
       try {
+        if(!response) return;
         if (response.code === 0) {
           response.currentAuthority = response.data.name || 'admin';
           response.status = 'ok';

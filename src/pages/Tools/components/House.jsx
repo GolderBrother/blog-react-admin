@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, Input } from 'antd';
+const Styles = {
+  rowItem: {
+    marginTop: "10px"
+  }
+}
 export default class House extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +28,7 @@ export default class House extends Component {
       },
       () => {
         this.handleRentAll();
+        this.handleBuyAll();
       }
     );
   }
@@ -35,6 +41,7 @@ export default class House extends Component {
       },
       () => {
         this.handleRentAll();
+        this.handleBuyAll();
       }
     );
   }
@@ -78,12 +85,12 @@ export default class House extends Component {
   render() {
     return (
       <div className="house-box mar-t30" style={{marginTop:'30px'}}>
-        <Row type="flex" justify="center" className="rowItem">
+        <Row type="flex" justify="center" style={Styles.rowItem}>
           <Col>
             <h2>{this.state.title}</h2>
           </Col>
         </Row>
-        <Row type="flex" justify="center" className="rowItem">
+        <Row type="flex" justify="center" style={Styles.rowItem}>
           <Col span={10}>
             <Input
               type="number"
@@ -93,7 +100,7 @@ export default class House extends Component {
             />
           </Col>
         </Row>
-        <Row type="flex" justify="center" className="rowItem">
+        <Row type="flex" justify="center" style={Styles.rowItem}>
           <Col span={10}>
             <Input
               type="number"
@@ -103,12 +110,12 @@ export default class House extends Component {
             />
           </Col>
         </Row>
-        <Row type="flex" justify="center" className="rowItem">
+        <Row type="flex" justify="center" style={Styles.rowItem}>
           <Col span={10}>
             <Input disabled addonBefore="租房合计：" addonAfter="万" value={this.state.rentAll} />
           </Col>
         </Row>
-        <Row type="flex" justify="center" className="rowItem">
+        <Row type="flex" justify="center" style={Styles.rowItem}>
           <Col span={10}>
             <Input
               addonBefore="买房合计："
@@ -118,12 +125,12 @@ export default class House extends Component {
             />
           </Col>
         </Row>
-        <Row type="flex" justify="center" className="rowItem">
+        <Row type="flex" justify="center" style={Styles.rowItem}>
           <Col span={10}>
             <Input addonBefore="买房 - 租房" addonAfter="万" value={this.state.moneyDiff} />
           </Col>
         </Row>
-        <Row type="flex" justify="center" className="rowItem">
+        <Row type="flex" justify="center" style={Styles.rowItem}>
           <Col span={10}>
             <Card bodyStyle={{ padding: '20px', fontSize: '14px' }}>
               <p>

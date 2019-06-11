@@ -149,25 +149,29 @@ class TableList extends PureComponent {
       pageNum: this.state.pageNum,
       pageSize: this.state.pageSize,
     };
-    const res = await new Promise(resolve => {
-      dispatch({
-        type: 'otherUser/queryUser',
-        payload: {
-          resolve,
-          params,
-        },
+    try {
+      const res = await new Promise(resolve => {
+        dispatch({
+          type: 'otherUser/queryUser',
+          payload: {
+            resolve,
+            params,
+          },
+        });
       });
-    });
-    // console.log('res :', res);
-    if(!res) return;
-    if (res.code === 0) {
-      this.setState({
-        loading: false,
-      });
-    } else {
-      notification.error({
-        message: res.message,
-      });
+      // console.log('res :', res);
+      if(!res) return;
+      if (res.code === 0) {
+        this.setState({
+          loading: false,
+        });
+      } else {
+        notification.error({
+          message: res.message,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

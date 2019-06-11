@@ -20,6 +20,7 @@ export default {
 			const response = yield call(queryTimeAxis, params);
 			!!resolve && resolve(response); // 返回数据
 			// console.log('response :', response)
+			if(!response) return;
 			if (response.code === 0) {
 				yield put({
 					type: 'saveTimeAxisList',
@@ -50,7 +51,7 @@ export default {
 			const { resolve, params } = payload;
 			const response = yield call(getTimeAxisDetail, params);
 			!!resolve && resolve(response);
-			console.log('response :', response)
+			if(!response) return;
 			if (response.code === 0) {
 				yield put({
 					type: 'saveTimeAxisDetail',

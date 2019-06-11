@@ -4,7 +4,7 @@ const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 class SystemSet extends Component {
   logout() {
-    console.log('logout', currentUser);
+    console.log('logout', this.props.currentUser);
   }
   render() {
     // this.props.user.userName
