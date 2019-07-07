@@ -33,7 +33,6 @@ class TagComponent extends React.Component {
         onChange={this.props.handleChange}
       />
       <Input
-        
         addonBefore="描述"
         size="large"
         placeholder="描述"

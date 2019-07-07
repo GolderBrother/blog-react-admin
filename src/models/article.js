@@ -16,7 +16,7 @@ export default {
     total: 0,
     articleDetail: {
       _id: '',
-      author: 'biaochenxuying',
+      author: 'golderBrother',
       category: [],
       comments: [],
       create_time: '',
