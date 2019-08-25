@@ -1,17 +1,16 @@
-FROM node:latest
+# 基于nginx镜像
+FROM nginx
+# 标识名字和版本
+LABEL name="blog-react-admin"
+LABEL name="1.0.0"
 
-WORKDIR /usr/src/app/
+# 把当前目录下的所有文件都拷贝到nginx配置的静态资源目录下
+COPY ./dist /usr/share/nginx/html/blog-react-admin
+COPY ./blog-react-admin.conf /etc/nginx/conf.d/
 
-COPY package.json ./
-RUN npm install --silent --no-cache
+# 向外暴露8000端口(需要在nginx改端口)
+EXPOSE 8000
 
-COPY ./ ./
 
-RUN apt-get update
-RUN apt-get install -yq gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
-  libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
-  libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
-  libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
-  ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
 
-CMD ["npm", "run", "build"]
+

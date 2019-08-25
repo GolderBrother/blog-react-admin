@@ -83,7 +83,7 @@
 # install dependencies
 npm install 
 
-# serve with hot reload at localhost: 3000
+# serve with hot reload at localhost: 8000
 npm start 
 
 # build for production with minification
@@ -112,7 +112,7 @@ npm run build
 - 1.  url 
 
 ```
-http://127.0.0.1:3000/register
+http://127.0.0.1:8000/register
 ```
 
 - 2. param
