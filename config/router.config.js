@@ -16,6 +16,7 @@ export default [
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
     authority: ['admin', 'user', 'xuying', 'biaochenxuying', 'james'],
+    // authority: ['admin', 'user', 'xuying', 'biaochenxuying'],
     routes: [
       // dashboard
       { path: '/', redirect: '/user/login' },
@@ -141,9 +142,9 @@ export default [
           {
             path: '/tools/list',
             name: 'list',
-            component: './Tools/List'
-          }
-        ]
+            component: './Tools/List',
+          },
+        ],
       },
       {
         name: 'exception',

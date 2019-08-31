@@ -9,6 +9,16 @@ export default config => {
   const outFile = path.join(__dirname, '../.temp/ant-design-pro.less');
   const stylesDir = path.join(__dirname, '../src/');
 
+  //css的修改
+  config.plugin('extract-css').use(require('mini-css-extract-plugin'), [
+    {
+      filename: `[name].css`,
+      chunkFilename: `[name].[contenthash:8].chunk.css`,
+    },
+  ]);
+  //js的修改
+  config.output.filename('[name].js');
+
   config.plugin('merge-less').use(MergeLessPlugin, [
     {
       stylesDir,

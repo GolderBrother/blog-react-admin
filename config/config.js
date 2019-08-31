@@ -6,6 +6,8 @@ import defaultSettings from '../src/defaultSettings';
 
 export default {
   // add for transfer to umi
+  publicPath: './', //定义引入资源的公共路径
+  // outputPath:'./',
   plugins: [
     [
       'umi-plugin-react',
