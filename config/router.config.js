@@ -15,7 +15,9 @@ export default [
     path: '/',
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
-    authority: ['admin', 'user', 'xuying', 'biaochenxuying', 'james'],
+    // 配置准入权限,可以配置多个角色
+    // authority: ['admin', 'user', 'xuying', 'biaochenxuying', 'james'],
+    authority: ['admin', 'james'],
     // authority: ['admin', 'user', 'xuying', 'biaochenxuying'],
     routes: [
       // dashboard
