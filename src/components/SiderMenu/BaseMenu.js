@@ -65,7 +65,7 @@ export default class BaseMenu extends PureComponent {
       .map(item => {
         // make dom
         const ItemDom = this.getSubMenuOrItem(item, parent);
-        return this.checkPermissionItem(item.authority, ItemDom);
+        return this.checkPermissionItem(item && item.authority, ItemDom);
       })
       .filter(item => item);
   };

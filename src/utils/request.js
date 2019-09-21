@@ -1,12 +1,8 @@
 import fetch from 'dva/fetch';
-import {
-  notification
-} from 'antd';
+import { notification } from 'antd';
 import router from 'umi/router';
 import hash from 'hash.js';
-import {
-  isAntdPro
-} from './utils';
+import { isAntdPro } from './utils';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -88,7 +84,7 @@ export default function request(
   };
   const newOptions = {
     ...defaultOptions,
-    ...options
+    ...options,
   };
   if (
     newOptions.method === 'POST' ||
@@ -144,9 +140,10 @@ export default function request(
       if (status === 401) {
         // @HACK
         /* eslint-disable no-underscore-dangle */
-        window.g_app._store.dispatch({
-          type: 'login/logout',
-        });
+        window.g_app._store &&
+          window.g_app._store.dispatch({
+            type: 'login/logout',
+          });
         return;
       }
       // environment should not be used

@@ -45,13 +45,13 @@ function formatter(data, parentPath = '', parentAuthority, parentName) {
         const result = {
           ...item,
           locale,
-          authority: item.authority || parentAuthority,
+          authority: (item && item.authority) || parentAuthority,
         };
         if (item.routes) {
           const children = formatter(
             item.routes,
             `${parentPath}${item.path}/`,
-            item.authority,
+            item && item.authority,
             locale
           );
           // Reduce memory usage
@@ -368,7 +368,10 @@ class BasicLayout extends React.PureComponent {
             {...this.props}
           />
           <Content style={this.getContentStyle()}>
-            <Authorized authority={routerConfig.authority} noMatch={<Exception403 />}>
+            <Authorized
+              authority={routerConfig && routerConfig.authority}
+              noMatch={<Exception403 />}
+            >
               {children}
               <div className="user-info">
                 <UserInfo
