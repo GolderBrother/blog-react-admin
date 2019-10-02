@@ -148,8 +148,8 @@ export default function request(
       }
       // environment should not be used
       if (status === 403) {
-        // router.push('/exception/403');
-        router.push('/user/login');
+        router.push('/exception/403');
+        // router.push('/user/login');
         return;
       }
       if (status <= 504 && status >= 500) {

@@ -19,6 +19,7 @@ export default {
         targets: {
           ie: 11,
         },
+        // pro 通过 umi 插件 umi-plugin-locale 来实现全球化的功能，并且默认开启。 umi-plugin-locale 约定 在 src/locales 中引入 相应的 js
         locale: {
           enable: true, // default false
           default: 'zh-CN', // default zh-CN
@@ -55,6 +56,7 @@ export default {
   routes: pageRoutes,
   // Theme for antd
   // https://ant.design/docs/react/customize-theme-cn
+  // 主题定制配置
   theme: {
     'primary-color': defaultSettings.primaryColor,
   },

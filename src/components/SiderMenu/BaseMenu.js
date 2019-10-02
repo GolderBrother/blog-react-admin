@@ -80,6 +80,8 @@ export default class BaseMenu extends PureComponent {
   getSubMenuOrItem = item => {
     // doc: add hideChildrenInMenu
     if (item.children && !item.hideChildrenInMenu && item.children.some(child => child.name)) {
+      // 格式化字符串,获取国际化文本
+      // https://pro.ant.design/docs/i18n-cn
       const name = item.locale ? formatMessage({ id: item.locale }) : item.name;
       return (
         <SubMenu
