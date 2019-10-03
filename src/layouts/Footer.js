@@ -10,7 +10,7 @@ const FooterView = () => (
         {
           key: 'Pro 首页',
           title: 'Pro 首页',
-          href: 'https://github.com/biaochenxuying/blog-react',
+          href: 'https://github.com/GolderBrother/blog-react',
           blankTarget: true,
         },
         {

@@ -177,4 +177,8 @@ https://pro.ant.design/docs/authority-management-cn
 3.个人设置页面需要完善(70%)
 4.服务端技术架构转变: express -> egg(已完成 - 2019.5.22)
 5.增加 tools 小工具页面(age+Bmi+House+Salary)(已完成)
+6.执行Dockerfile创建Docker容器有问题，dist文件夹不能复制到执行目录
+(http://116.62.6.228:8000/#/user/login)
+> 目前使用的是hash路由
+
 

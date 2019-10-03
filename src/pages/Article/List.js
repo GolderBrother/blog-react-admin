@@ -34,7 +34,7 @@ class TableList extends PureComponent {
     this.state = {
       changeType: false,
       title: '',
-      author: 'biaochenxuying',
+      author: 'golderBrother',
       keyword: '',
       content: '',
       desc: '',
@@ -516,7 +516,7 @@ class TableList extends PureComponent {
           },
         });
       });
-      if(!res) return;
+      if (!res) return;
       const tagsArr = [];
       if (res.data.tags && res.data.tags.length) {
         for (let i = 0; i < res.data.tags.length; i++) {
@@ -560,7 +560,7 @@ class TableList extends PureComponent {
         visible: true,
         changeType: false,
         title: '',
-        author: 'biaochenxuying',
+        author: 'golderBrother',
         keyword: '',
         content: '',
         desc: '',
@@ -610,7 +610,7 @@ class TableList extends PureComponent {
       });
     });
     // console.log('res :', res);
-    if(!res) return;
+    if (!res) return;
     if (res.code === 0) {
       this.setState({
         loading: false,
@@ -639,7 +639,7 @@ class TableList extends PureComponent {
       });
     });
     // console.log('res :', res);
-    if(!res) return;
+    if (!res) return;
     if (res.code === 0) {
       notification.success({
         message: res.message,
