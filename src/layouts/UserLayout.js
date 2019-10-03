@@ -27,7 +27,7 @@ const links = [
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright" /> {new Date().getFullYear()} james.zhang出品
+    Copyright <Icon type="copyright" /> {new Date().getFullYear()} GolderBrother出品
   </Fragment>
 );
 

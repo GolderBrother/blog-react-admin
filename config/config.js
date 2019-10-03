@@ -52,6 +52,8 @@ export default {
   define: {
     APP_TYPE: process.env.APP_TYPE || '',
   },
+  // hash模式路由，解决部署到生产环境后，路由不生效的问题(默认H5的history历史模式路由，会请求服务器导致资源不存在404的问题)
+  history: 'hash',
   // 路由配置
   routes: pageRoutes,
   // Theme for antd
@@ -65,7 +67,7 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'http://127.0.0.1:6100',
+      target: 'http://116.62.6.228:6100',
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },

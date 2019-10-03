@@ -320,7 +320,7 @@ class BasicLayout extends React.PureComponent {
     const routerConfig = this.matchParamsPath(pathname);
 
     let { initLoading, loading, list, currentUser = {} } = this.state;
-    list = Object.entries(currentUser).map(([key, value] = []) => ({
+    list = currentUser && Object.entries(currentUser).map(([key, value] = []) => ({
       key,
       value,
       loading: true,
