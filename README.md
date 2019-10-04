@@ -181,5 +181,7 @@ https://pro.ant.design/docs/authority-management-cn
 (http://116.62.6.228:8000/#/user/login)
 > 目前使用的是hash路由
 7.更换个react富文本编辑器(```page path:blog-react-admin\src\pages\Article\ArticleCreate.js```)
+[
+React Editor - 富文本编辑器推荐](https://blog.csdn.net/Loya0813/article/details/84391944)
 
 
