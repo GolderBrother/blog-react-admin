@@ -118,7 +118,7 @@ class ArticleCreate extends React.Component {
         type: this.state.type,
         tags: this.state.tags,
         category: this.state.category,
-	  };
+      };
       const res = await new Promise(resolve => {
         dispatch({
           type: 'article/updateArticle',
@@ -179,7 +179,7 @@ class ArticleCreate extends React.Component {
             params,
           },
         });
-	  });
+      });
       if (!res) return;
       if (res.code === 0) {
         notification.success({

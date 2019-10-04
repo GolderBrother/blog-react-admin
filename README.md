@@ -180,5 +180,6 @@ https://pro.ant.design/docs/authority-management-cn
 6.执行Dockerfile创建Docker容器有问题，dist文件夹不能复制到执行目录
 (http://116.62.6.228:8000/#/user/login)
 > 目前使用的是hash路由
+7.更换个react富文本编辑器(```page path:blog-react-admin\src\pages\Article\ArticleCreate.js```)
 
 

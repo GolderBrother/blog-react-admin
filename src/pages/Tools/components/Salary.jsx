@@ -98,14 +98,20 @@ class Salary extends Component {
   render() {
     return (
       <div className="salary-box mar-t30" style={{ marginTop: '30px' }}>
-        <Row type="flex" justify="center" className="rowItem">
+        <Row type="flex" justify="center" className="rowItem" style={{ marginTop: '10px' }}>
           <Col>
             <h2>{this.state.title}</h2>
           </Col>
         </Row>
-        {
-          salaryList && salaryList.map((item, index) => (
-            <Row type="flex" justify="center" className="rowItem" key={index+item}>
+        {salaryList &&
+          salaryList.map((item, index) => (
+            <Row
+              type="flex"
+              justify="center"
+              className="rowItem"
+              style={{ marginTop: '10px' }}
+              key={index + item}
+            >
               <Col span={10}>
                 <Input
                   addonBefore={item.addonBefore}
@@ -118,8 +124,7 @@ class Salary extends Component {
                 />
               </Col>
             </Row>
-          ))
-        }
+          ))}
       </div>
     );
   }
