@@ -144,42 +144,51 @@ https://pro.ant.design/docs/authority-management-cn
 
 **项目地址：**
 
-> [前台展示: https://github.com/GolderBrother/blog-react](https://github.com/GolderBrother/blog-react)
+> [前台展示: https://github.com/biaochenxuying/blog-react](https://github.com/biaochenxuying/blog-react)
 
-> [前台展示: https://github.com/GolderBrother/blog-vue-typescript](https://github.com/GolderBrother/blog-vue-typescript)
+> [前台展示: https://github.com/biaochenxuying/blog-vue-typescript](https://github.com/biaochenxuying/blog-vue-typescript)
 
-> [管理后台：https://github.com/GolderBrother/blog-react-admin](https://github.com/GolderBrother/blog-react-admin)
+> [管理后台：https://github.com/biaochenxuying/blog-react-admin](https://github.com/biaochenxuying/blog-react-admin)
 
-> [后端：https://github.com/GolderBrother/blog-node-egg](https://github.com/GolderBrother/blog-node-egg)
+> [后端：https://github.com/biaochenxuying/blog-node](https://github.com/biaochenxuying/blog-node)
+
+> [blog：https://github.com/biaochenxuying/blog](https://github.com/biaochenxuying/blog)
+
+**本博客系统的系列文章：**
+
+- 1. [react + node + express + ant + mongodb 的简洁兼时尚的博客网站](https://biaochenxuying.cn/articleDetail?article_id=5bf57a8f85e0f13af26e579b)
+- 2. [react + Ant Design + 支持 markdown 的 blog-react 项目文档说明](https://biaochenxuying.cn/articleDetail?article_id=5bf6bb5e85e0f13af26e57b7)
+- 3. [基于 node + express + mongodb 的 blog-node 项目文档说明](https://biaochenxuying.cn/articleDetail?article_id=5bf8c57185e0f13af26e7d0d)
+- 4. [服务器小白的我,是如何将 node+mongodb 项目部署在服务器上并进行性能优化的](https://biaochenxuying.cn/articleDetail?article_id=5bfa728bb54f044b4f9da240)
+- 5. [github 授权登录教程与如何设计第三方授权登录的用户表](https://biaochenxuying.cn/articleDetail?article_id=5c7bd34e42b55e2ecc90976d)
+- 6. [一次网站的性能优化之路 -- 天下武功，唯快不破](https://biaochenxuying.cn/articleDetail?article_id=5c8ca2d3b87b8a04f1860c9a)
+- 7. [Vue + TypeScript + Element 搭建简洁时尚的博客网站及踩坑记](https://biaochenxuying.cn/articleDetail?article_id=5c9d8ce5f181945ddd6b0ffc)
+
+## 最后
+
+如果您觉得本项目和文章不错或者对你有所帮助，请给个星吧，你的肯定就是我继续创作的最大动力。
+
+鉴于问问题的人有点多，笔者时间有限，处理不过来，大家可以加入 QQ 群：**186045338**，加群暗号：**全栈修炼** ，一起相互交流学习。
 
 ## 遇到的问题
 - 提交代码后，启动docker容器失败，持续集成和持续部署不生效，也不报错!
 > 解决办法： 端口冲突，先杀死启动端口对应的进程后在启动容器
 ```bash
-# TODO：这边启动会出现8000端口被占用，导致容器启动失败，需要解决，因此先杀掉所有8000端口的进程
-kill -9 $(lsof -i tcp:8000 -t)
+# TODO：这边启动会出现80端口被占用，导致容器启动失败，需要解决，因此先杀掉所有80端口的进程
+kill -9 $(lsof -i tcp:80 -t)
 ```
 
-### TODO：
+#### TODO：
 1.Dashboard需要填充文章、热门、项目、留言等数据统计(70% - 2019.5.26)
 2.需要增加显示当前登录用户，以及登出功能(已完成 - 2019.5.11)
 3.个人设置页面需要完善(70%)
 4.服务端技术架构转变: express -> egg(已完成 - 2019.5.22)
 5.增加 tools 小工具页面(age+Bmi+House+Salary)(已完成)
-6.执行Dockerfile创建Docker容器有问题，dist文件夹不能复制到执行目录(已解决)
+6.执行Dockerfile创建Docker容器有问题，dist文件夹不能复制到执行目录
 (http://116.62.6.228:8000/#/user/login)
 > 目前使用的是hash路由
 7.更换个react富文本编辑器(```page path:blog-react-admin\src\pages\Article\ArticleCreate.js```)
 [
 React Editor - 富文本编辑器推荐](https://blog.csdn.net/Loya0813/article/details/84391944)
-
-**本博客系统的系列文章：**
-
-- 1. [一次网站的性能优化之路 -- 天下武功，唯快不破](http://116.62.6.228/articleDetail?article_id=5cf9393bb1911633f44b374a)
-
-
-## 最后
-
-如果您觉得本项目和文章不错或者对你有所帮助，请给个星(star)吧，你的肯定就是我继续创作的最大动力。
 
 
