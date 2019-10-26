@@ -123,7 +123,7 @@ export default class Bmi extends Component {
             <Col span={10}>
               <Card id="cardWrap">
                 {this.weightConfig.map((item, index) => (
-                  <p key={index} style={{padding: "5px"}} className={i === index + 1 ? `${Styles.activeP} ${Styles.resultListItem}` : Styles.resultListItem}>
+                  <p key={index}  style={{padding: "5px", marginBottom: "5px"}} className={i === index + 1 ? `${Styles.activeP} ${Styles.resultListItem}` : Styles.resultListItem}>
                     {item.text}
                     {item.range}
                   </p>

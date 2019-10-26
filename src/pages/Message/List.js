@@ -263,7 +263,7 @@ class TableList extends PureComponent {
                 type="primary"
                 icon="search"
               >
-                Search
+                搜索
               </Button>
             </span>
           </Col>

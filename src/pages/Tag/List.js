@@ -30,6 +30,10 @@ class TableList extends PureComponent {
           dataIndex: 'name',
         },
         {
+          title: '描述',
+          dataIndex: 'desc',
+        },
+        {
           title: '创建时间',
           dataIndex: 'create_time',
           sorter: true,
@@ -223,7 +227,7 @@ class TableList extends PureComponent {
                 type="primary"
                 icon="search"
               >
-                Search
+                搜索
               </Button>
             </span>
             <span>
