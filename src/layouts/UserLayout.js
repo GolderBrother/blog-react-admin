@@ -11,23 +11,23 @@ const links = [
   {
     key: 'help',
     title: formatMessage({ id: 'layout.user.link.help' }),
-    href: '',
+    href: 'javascript: void 0;',
   },
   {
     key: 'privacy',
     title: formatMessage({ id: 'layout.user.link.privacy' }),
-    href: '',
+    href: 'javascript: void 0;',
   },
   {
     key: 'terms',
     title: formatMessage({ id: 'layout.user.link.terms' }),
-    href: '',
+    href: 'javascript: void 0;',
   },
 ];
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright" /> {new Date().getFullYear()} GolderBrother出品
+    Copyright <Icon type="copyright" /> {new Date().getFullYear()} GolderBrother. ICP证：闽ICP备19021195号
   </Fragment>
 );
 

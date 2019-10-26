@@ -28,7 +28,7 @@ const FooterView = () => (
       ]}
       copyright={
         <Fragment>
-          Copyright <Icon type="copyright" /> jamesZhang
+          Copyright <Icon type="copyright" /> 2017-{new Date().getFullYear()} GolderBrother. ICP证：闽ICP备19021195号
         </Fragment>
       }
     />
