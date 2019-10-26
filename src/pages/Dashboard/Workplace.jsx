@@ -341,7 +341,7 @@ class Workplace extends PureComponent {
                         />
                       </a>
                       <div className="clear">
-                        <a href="javascript:void(0);" className="block">
+                        <a href="javascript:void(0);" className={styles.name + ' block'}>
                           佐助
                         </a>
                         <span className="text-muted">吊车尾~~</span>
@@ -356,7 +356,7 @@ class Workplace extends PureComponent {
                         />
                       </a>
                       <div className="clear">
-                        <a href="javascript:void(0);" className="block">
+                        <a href="javascript:void(0);" className={styles.name + ' block'}>
                           小樱
                         </a>
                         <span className="text-muted">佐助，你好帅！</span>
@@ -371,7 +371,7 @@ class Workplace extends PureComponent {
                         />
                       </a>
                       <div className="clear">
-                        <a href="javascript:void(0);" className="block">
+                        <a href="javascript:void(0);" className={styles.name + ' block'}>
                           雏田
                         </a>
                         <span className="text-muted">鸣人君，那个我。。喜欢你</span>
