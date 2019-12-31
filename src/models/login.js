@@ -57,7 +57,7 @@ const initUserAuthInfo = () => {
   userAuth.notifyCount = 0;
   userAuth.address = '福建省';
   userAuth.country = 'China';
-  userAuth.group = 'jamesZhang';
+  userAuth.group = Local.get('user') && Local.get('user').group || "jamesZhang";
   userAuth.title = '交互专家';
   userAuth.signature = '海纳百川，有容乃大';
   userAuth.tags = [];
