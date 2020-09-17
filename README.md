@@ -161,17 +161,16 @@ kill -9 $(lsof -i tcp:8000 -t)
 ```
 
 ### TODO：
-1.Dashboard需要填充文章、热门、项目、留言等数据统计(70% - 2019.5.26)
-2.需要增加显示当前登录用户，以及登出功能(已完成 - 2019.5.11)
-3.个人设置页面需要完善(70%)
-4.服务端技术架构转变: express -> egg(已完成 - 2019.5.22)
-5.增加 tools 小工具页面(age+Bmi+House+Salary)(已完成)
-6.执行Dockerfile创建Docker容器有问题，dist文件夹不能复制到执行目录(已解决)
+- [x] Dashboard需要填充文章、热门、项目、留言等数据统计(70% - 2019.5.26)
+- [x] 需要增加显示当前登录用户，以及登出功能(已完成 - 2019.5.11)
+- [x] 个人设置页面需要完善(70%)
+- [x] 服务端技术架构转变: express -> egg(已完成 - 2019.5.22)
+- [x] 增加 tools 小工具页面(age+Bmi+House+Salary)(已完成)
+- [x] 执行Dockerfile创建Docker容器有问题，dist文件夹不能复制到执行目录(已解决)
 (http://116.62.6.228:8000/#/user/login)
 > 目前使用的是hash路由
-7.更换个react富文本编辑器(```page path:blog-react-admin\src\pages\Article\ArticleCreate.js```)
-[
-React Editor - 富文本编辑器推荐](https://blog.csdn.net/Loya0813/article/details/84391944)
+- [] 更换个react富文本编辑器(```page path:blog-react-admin\src\pages\Article\ArticleCreate.js```)
+> [React Editor - 富文本编辑器推荐](https://blog.csdn.net/Loya0813/article/details/84391944)
 
 **本博客系统的系列文章：**
 
